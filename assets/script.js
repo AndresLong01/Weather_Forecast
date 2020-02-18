@@ -33,8 +33,8 @@ function newSearch(){
     } else {
         city = $(this).text();
     }
-    let queryURL= "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=f3e794b6f19299364c3a368c93f4e895";
-    let forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f3e794b6f19299364c3a368c93f4e895";
+    let queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=f3e794b6f19299364c3a368c93f4e895";
+    let forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f3e794b6f19299364c3a368c93f4e895";
     search.val('');
     console.log($(this).text());
     $.ajax({
@@ -50,7 +50,7 @@ function newSearch(){
         cityWind.text(response.wind.speed);
         let latitude = response.coord.lat;
         let longitude = response.coord.lon;
-        let uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=f3e794b6f19299364c3a368c93f4e895&lat=" + latitude + "&lon="+ longitude;
+        let uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=f3e794b6f19299364c3a368c93f4e895&lat=" + latitude + "&lon="+ longitude;
         //Making an ajax request for the UV index
         $.ajax({
             url: uvURL,
