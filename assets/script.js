@@ -9,15 +9,32 @@ let cityUV = $("#city-uvindex");
 let cardDeck = $("#deck");
 
 let count = 0;
+var cityCount = [];
 
 //Main Function for a new search query
 function newSearch(){
     //Initializing relevant variables and all the different URLs for different Ajax calls
     // IDEA: IF STATEMENT FOR IF SEARCH INFO IS NOT JUST EMPTY, THEN EMPTY SEARCH INFO. OTHERWISE USE VALUE OF BUTTON AS CITY
-    var city = search.val();
+    var city;
+    for (k=0; k<cityCount.length;k++){
+        if(search.val() === cityCount[k]){
+            search.val('');
+            return;
+        }
+    }
+    var newCityBtn = $("<li class='btn btn-outline-secondary text-left list-group-item' id='button' data-history='" + count + "'>");
+    if (search.val() !== ""){
+        city = search.val();
+        newCityBtn.text(city);
+        btnHistory.append(newCityBtn);
+        cityCount = cityCount.concat(search.val());
+    } else {
+        city = $(this).text();
+    }
     var queryURL= "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=f3e794b6f19299364c3a368c93f4e895";
     var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f3e794b6f19299364c3a368c93f4e895";
-    var newCityBtn = $("<li class='btn btn-outline-secondary text-left list-group-item'>");
+    search.val('');
+    console.log($(this).text());
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -25,8 +42,6 @@ function newSearch(){
         //Main display
         console.log(response);
         //IDEA ADD DATAS VALUE TO EACH NEW BUTTON AND HAVE A FOR LOOP COMPARE EVERY DATA VALUE TO NEW SEEARCH FIELD, RETURN IF MATCHES.
-        newCityBtn.text(response.name);
-        btnHistory.append(newCityBtn);
         cityName.text(response.name);
         var conversion = (response.main.temp - 273.15)*9/5 + 32;
         cityTemp.text(Math.floor(conversion) + "°F");
@@ -104,4 +119,4 @@ function newSearch(){
     });
 }
 //click events
-$(document).on("click", "button", newSearch);
+$(document).on("click", "#button", newSearch);
