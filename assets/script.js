@@ -108,7 +108,7 @@ function newSearch(){
                 cardIcon = cardIconCloudSunRain;
             }
             let toF = (forecast.list[j].main.temp - 273.15)*9/5 +32;
-            cardTemp.text("Temp: " + Math.floor(toF) + "°F");
+            cardTemp.text("Temp: " + Math.floor(toF) + " °F");
             cardHum.text("Humidity: " + forecast.list[j].main.humidity + "%");
             newCardBody.append(cardDate);
             newCardBody.append(cardIcon);
