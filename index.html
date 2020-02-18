@@ -21,20 +21,18 @@
                 <div class="row">
                     <div class="input-group mb-3 col-10">
                         <input type="text" class="form-control" placeholder="City Name"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                            id="city-search" aria-describedby="button-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
-                                    class="fas fa-search"></i></button>
+                            <button class="btn btn-outline-secondary" type="button" id="button"><i
+                                    class="fas fa-search"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="card" style="width: 90%;">
-                            <ul class="list-group list-group-flush">
-                                <li class="btn btn-outline-secondary text-left list-group-item">Atlanta</li>
-                                <li class="btn btn-outline-secondary text-left list-group-item">Chicago</li>
-                                <li class="btn btn-outline-secondary text-left list-group-item">Houston</li>
+                        <div class="card" style="width: 100%;">
+                            <ul class="list-group list-group-flush" id="city-buttons">
                             </ul>
                         </div>
                     </div>
@@ -55,8 +53,8 @@
                 </div>
                 <h3 class="offset-sm-1">5-Day Forecast:</h3>
                 <div class="row">
-                    <div class="offset-sm-1 col-sm-9 mb-3" id="empty-upon-search">
-                        <div class="card-deck">
+                    <div class="offset-sm-1 col-sm-9 mb-3">
+                        <div class="card-deck" id="deck">
                             <div class="card text-white bg-primary" style="max-width: 18rem;">
                                 <div class="card-body">
                                     <h5 class="card-title">Date</h5>
