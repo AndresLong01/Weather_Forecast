@@ -28,8 +28,6 @@ function newSearch(){
     }
     let newCityBtn = $("<li class='btn btn-outline-secondary text-left list-group-item' id='button' data-history='" + count + "'>");
     //This conditional statement handles whether the click event comes from a new search term or just an older historic button
-    console.log(typeof(search.val()));
-    console.log(typeof(parseInt(search.val())));
     if (search.val() !== ""){
         city = search.val();
         newCityBtn.text(city);
@@ -51,6 +49,7 @@ function newSearch(){
         }
         search.val('');
         cityName.text(response.name + " " + currentTime);
+        //Conversion from Kelvin
         let conversion = (response.main.temp - 273.15)*9/5 + 32;
         cityTemp.text(Math.floor(conversion) + "°F");
         cityHum.text(response.main.humidity + "%");
@@ -73,8 +72,11 @@ function newSearch(){
             }
         });
     }).catch(function(err){
+        cityCount.splice(count, 1);
+        count--;
         alert("Something went wrong!");
     });
+    //Above this line exists an exception for errors caught
     //Emptying the Deck for next iteration
     cardDeck.empty();
     $.ajax({
@@ -113,6 +115,7 @@ function newSearch(){
             } else {
                 cardIcon = cardIconCloudSunRain;
             }
+            //conversion from Kelvin
             let toF = (forecast.list[j].main.temp - 273.15)*9/5 +32;
             cardTemp.text("Temp: " + Math.floor(toF) + " °F");
             cardHum.text("Humidity: " + forecast.list[j].main.humidity + "%");
