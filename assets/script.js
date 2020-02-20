@@ -72,8 +72,9 @@ function newSearch(){
             }
         });
     }).catch(function(err){
-        cityCount.splice(count, 1);
-        count--;
+        // cityCount.splice(count, 1);
+        // count--;
+        search.val('');
         alert("Something went wrong!");
     });
     //Above this line exists an exception for errors caught
